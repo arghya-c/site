@@ -14,7 +14,7 @@
         <ul>
             <li><a class="active" href="index.html">Home</a></li>
             <li><a href="research.html">Research</a></li>
-            <li><a href="extra.html">Extra Curricular Activities</a></li>
+            <!--<li><a href="extra.html">Extra Curricular Activities</a></li>-->
         </ul>
     </nav>
 
@@ -50,7 +50,8 @@
     </div>
 
     <div class="right-column">
-        <img src="images/profile1.jpg" alt="Profile Photo" class="responsive-img">
+        <img id="profile-pic" src="images/profile1.jpg" alt="Profile Photo" class="responsive-img">
+
     </div>
 
 </div>
@@ -61,5 +62,31 @@
         </footer>
     </div>
 
+
+    <script>
+let clickCount = 0;
+let firstClickTime = 0;
+document.getElementById("profile-pic").addEventListener("click", function () {
+    const now = Date.now();
+
+    // First click — start timer
+    if (clickCount === 0) {
+        firstClickTime = now;
+    }
+
+    clickCount++;
+
+    // If more than 2 seconds passed → reset
+    if (now - firstClickTime > 2000) {
+        clickCount = 1;  // this click becomes the new first click
+        firstClickTime = now;
+    }
+
+    // Trigger easter egg on 5 clicks in under 2 seconds
+    if (clickCount >= 5 && (now - firstClickTime <= 2000)) {
+        window.location.href = "extra.html";   // redirect
+    }
+});
+</script>
 </body>
 </html>
